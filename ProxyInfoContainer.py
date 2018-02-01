@@ -31,7 +31,7 @@ class ProxyInfoContainer:
         tag_option = tag_country[0].find_all(name="option")
         self.countries = [(x.text,  x["value"]) for x in tag_option]
         
-        #self.proxyItems.extend(self.__getPageItems(soup))
+        #self.proxyItems.extend(self._getPageItems(soup))
         pass
         
     def fetchInfoForCountryByPage(self, country, page):
@@ -47,7 +47,7 @@ class ProxyInfoContainer:
             return False
         
         soup = BeautifulSoup(data, "html.parser")
-        pageItems = self.__getPageItems(soup)
+        pageItems = self._getPageItems(soup)
         if pageItems:
             self.proxyItems.extend(pageItems)
         else:
@@ -58,26 +58,26 @@ class ProxyInfoContainer:
     #
     # Get items for the current page
     #
-    def __getPageItems(self,  soup):
+    def _getPageItems(self,  soup):
         pageItems = []
         items_ul = soup.find(name="div",  class_="table").find_all("ul")
         for item in items_ul:
             item_ins = ProxyItem()
             ip_port_encoded = item.find("li", class_="proxy").get_text()
-            item_ins.ip_port = self.__getIPPort(ip_port_encoded)
+            item_ins.ip_port = self._getIPPort(ip_port_encoded)
             if not item_ins.ip_port:
                 return None
             item_ins.protocol = item.find("li", class_="https").get_text()
             item_ins.speed = item.find("li", class_="speed").get_text()
             item_ins.type = item.find("li", class_="type").get_text()
-            item_ins.country, item_ins.city = self.__getCountryCity(item.find("li", class_="country-city"))
+            item_ins.country, item_ins.city = self._getCountryCity(item.find("li", class_="country-city"))
             
             #add to list
             pageItems.append(item_ins)
             #print(item_ins.printSelf())
         return None if len(pageItems) == 0 else pageItems
         
-    def __getIPPort(self, encodedText):
+    def _getIPPort(self, encodedText):
         matchObj = re.match( r'Proxy\(\'(.*)?\'\)', encodedText)
         if matchObj:
             return base64.b64decode(matchObj.group(1)).decode()
@@ -85,7 +85,7 @@ class ProxyInfoContainer:
             return ""
         pass
         
-    def __getCountryCity(self, node):
+    def _getCountryCity(self, node):
         return (node.find(name="span", class_="country").find(name="span", class_="name").get_text(), node.find(name="span", class_="city").get_text())
         pass
         
