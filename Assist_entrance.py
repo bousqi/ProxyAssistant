@@ -86,13 +86,13 @@ class FetchWindow(QMainWindow, Ui_MainWindow):
                 
             currentRowCount = self.proxyTable.rowCount()
             self.proxyTable.setRowCount(len(self.container.proxyItems))
-            for i in range(currentRowCount, len(self.container.proxyItems)):
-                self.proxyTable.setItem(i,0, QTableWidgetItem(self.container.proxyItems[i].ip_port))
-                self.proxyTable.setItem(i,1, QTableWidgetItem(self.container.proxyItems[i].country))
-                self.proxyTable.setItem(i,2, QTableWidgetItem(self.container.proxyItems[i].city))
-                self.proxyTable.setItem(i,3, QTableWidgetItem(self.container.proxyItems[i].type))
-                self.proxyTable.setItem(i,4, QTableWidgetItem(self.container.proxyItems[i].speed))
-                self.proxyTable.setItem(i,5, QTableWidgetItem(self.container.proxyItems[i].protocol))
+            for j in range(currentRowCount, len(self.container.proxyItems)):
+                self.proxyTable.setItem(j,0, QTableWidgetItem(self.container.proxyItems[j].ip_port))
+                self.proxyTable.setItem(j,1, QTableWidgetItem(self.container.proxyItems[j].country))
+                self.proxyTable.setItem(j,2, QTableWidgetItem(self.container.proxyItems[j].city))
+                self.proxyTable.setItem(j,3, QTableWidgetItem(self.container.proxyItems[j].type))
+                self.proxyTable.setItem(j,4, QTableWidgetItem(self.container.proxyItems[j].speed))
+                self.proxyTable.setItem(j,5, QTableWidgetItem(self.container.proxyItems[j].protocol))
                 
         print("Fetching Finished")
         self.status_label.setText("Fetching Finished.")
@@ -107,7 +107,7 @@ class FetchWindow(QMainWindow, Ui_MainWindow):
         startTime = datetime.now()
         try:
             requests.get(self.testURL.text(), proxies={"http":self.proxyTable.item(rowNum, 5).text()+"://" + self.proxyTable.item(rowNum, 0).text()}, timeout=10)
-        except:
+        except Exception:
             pass
         else:
             endTime = datetime.now()
@@ -124,7 +124,6 @@ class FetchWindow(QMainWindow, Ui_MainWindow):
 #            self.proxyTable.resizeColumnToContents(i)
         self.proxyTable.horizontalHeader().resizeSections()
         #self.proxyTable.horizontalHeader().setStretchLastSection(True)
-        pass
         
     def _updatetableData(self):
         
