@@ -28,6 +28,9 @@
     <height>507</height>
    </size>
   </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::DefaultContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
@@ -40,6 +43,9 @@
       <width>811</width>
       <height>461</height>
      </rect>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::CustomContextMenu</enum>
     </property>
    </widget>
    <widget class="QPushButton" name="btnStartFetch">
@@ -124,6 +130,11 @@
     </layout>
    </widget>
   </widget>
+  <action name="actionExportJSON_SR">
+   <property name="text">
+    <string>Export JSON for Shadowrocket</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

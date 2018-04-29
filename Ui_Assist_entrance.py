@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'E:\Projects\Python\ProxyAssistant\Assist_entrance.ui'
+# Form implementation generated from reading ui file 'Assist_entrance.ui'
 #
-# Created by: PyQt5 UI code generator 5.10
+# Created by: PyQt5 UI code generator 5.10.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -19,10 +19,12 @@ class Ui_MainWindow(object):
         MainWindow.setSizePolicy(sizePolicy)
         MainWindow.setMinimumSize(QtCore.QSize(811, 507))
         MainWindow.setMaximumSize(QtCore.QSize(811, 507))
+        MainWindow.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
         self.centralWidget = QtWidgets.QWidget(MainWindow)
         self.centralWidget.setObjectName("centralWidget")
         self.proxyTable = QtWidgets.QTableWidget(self.centralWidget)
         self.proxyTable.setGeometry(QtCore.QRect(0, 0, 811, 461))
+        self.proxyTable.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.proxyTable.setObjectName("proxyTable")
         self.proxyTable.setColumnCount(0)
         self.proxyTable.setRowCount(0)
@@ -53,6 +55,8 @@ class Ui_MainWindow(object):
         self.label_2.setObjectName("label_2")
         self.horizontalLayout.addWidget(self.label_2)
         MainWindow.setCentralWidget(self.centralWidget)
+        self.actionExportJSON_SR = QtWidgets.QAction(MainWindow)
+        self.actionExportJSON_SR.setObjectName("actionExportJSON_SR")
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -65,14 +69,5 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "Country:"))
         self.status_label.setText(_translate("MainWindow", "Ready"))
         self.label_2.setText(_translate("MainWindow", "Test URL:"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())
+        self.actionExportJSON_SR.setText(_translate("MainWindow", "Export JSON for Shadowrocket"))
 

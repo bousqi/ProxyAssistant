@@ -6,12 +6,13 @@ Module implementing FetchWindow.
 
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QMainWindow,QTableWidgetItem
+from PyQt5.QtWidgets import QMainWindow,QTableWidgetItem,QMenu,QMessageBox
 
 from Ui_Assist_entrance import Ui_MainWindow
 from ProxyInfoContainer import ProxyInfoContainer
 import threading
 import requests
+from ExportUtil import ExportUtil
 from datetime import *
     
 
@@ -32,17 +33,34 @@ class FetchWindow(QMainWindow, Ui_MainWindow):
         super(FetchWindow, self).__init__(parent)
         self.setupUi(self)
         
+        #context menu
+        self.proxyTable.customContextMenuRequested.connect(self.handleTableMenu)
+
         #init table widget
         self._createTable()
         
         self.container = ProxyInfoContainer()
         self.container.fetchCountryInfo()
-        
+
         #initialize combobox
         for i in self.container.countries:
             self.countrySelector.addItem(i[0], i[1])
         #print(self.countrySelector.itemData(self.countrySelector.currentIndex()))
         
+
+    def handleTableMenu(self, pos):
+
+        cmenu = QMenu(self)
+        
+        cmenu.addAction(self.actionExportJSON_SR)
+        action = cmenu.exec_(self.mapToGlobal(pos))
+
+        if action == self.actionExportJSON_SR:
+            if self.proxyTable.rowCount() == 0:
+                QMessageBox.information(self, "Please fetch first",  "No information to export", QMessageBox.Yes)
+                return
+            ExportUtil().exportShadowrocketJSON(self.proxyTable)
+            QMessageBox.information(self, "Completed",  "Export completed", QMessageBox.Yes)
         
     def _createTable(self):
         #self.proxyTable = QTableWidget()
