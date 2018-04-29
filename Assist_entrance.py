@@ -3,18 +3,16 @@
 """
 Module implementing FetchWindow.
 """
-
+from datetime import datetime
+import threading
+import requests
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import pyqtSlot
-from PyQt5.QtWidgets import QMainWindow,QTableWidgetItem,QMenu,QMessageBox
+from PyQt5.QtWidgets import QMainWindow, QTableWidgetItem, QMenu, QMessageBox
 
 from Ui_Assist_entrance import Ui_MainWindow
 from ProxyInfoContainer import ProxyInfoContainer
-import threading
-import requests
 from ExportUtil import ExportUtil
-from datetime import *
-    
 
 class FetchWindow(QMainWindow, Ui_MainWindow):
     #max page count for retrieving
