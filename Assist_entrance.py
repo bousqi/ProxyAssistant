@@ -17,7 +17,7 @@ from ExportUtil import ExportUtil
 class FetchWindow(QMainWindow, Ui_MainWindow):
     #max page count for retrieving
     MAX_PAGE = 100
-    
+
     """
     Class documentation goes here.
     """
