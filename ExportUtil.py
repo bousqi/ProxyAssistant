@@ -57,3 +57,21 @@ class ExportUtil:
         fo = open("outputs/Shadowrocket.json", "w")
         fo.write(json.dumps(output,indent=2))
         fo.close()
+
+    def exportProxychains(self, proxyTable):
+        output = []
+
+        if not os.path.exists("outputs"):
+            os.makedirs("outputs")
+
+        with open("outputs/proxychains.conf", "w") as fo:
+            fo.write("random_chain\nchain_len = 1\ntcp_read_time_out       5000\ntcp_connect_time_out    2000\n\n\n[ProxyList]\n")
+
+            for i in range(proxyTable.rowCount()):
+                ip_port = proxyTable.item(i, 0).text()
+                ip = ip_port.split(":")[0]
+                port = ip_port.split(":")[1]
+                country = proxyTable.item(i, 1).text()
+
+                fo.write("http {:>15} {:>5} # {}\n".format(ip, port, country))
+        fo.close()

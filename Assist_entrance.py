@@ -51,6 +51,7 @@ class FetchWindow(QMainWindow, Ui_MainWindow):
         cmenu = QMenu(self)
         
         cmenu.addAction(self.actionExportJSON_SR)
+        cmenu.addAction(self.actionExport_Proxychains)
         action = cmenu.exec_(self.mapToGlobal(pos))
 
         if action == self.actionExportJSON_SR:
@@ -59,7 +60,13 @@ class FetchWindow(QMainWindow, Ui_MainWindow):
                 return
             ExportUtil().exportShadowrocketJSON(self.proxyTable)
             QMessageBox.information(self, "Completed",  "Export completed", QMessageBox.Yes)
-        
+        elif action == self.actionExport_Proxychains:
+            if self.proxyTable.rowCount() == 0:
+                QMessageBox.information(self, "Please fetch first",  "No information to export", QMessageBox.Yes)
+                return
+            ExportUtil().exportProxychains(self.proxyTable)
+            QMessageBox.information(self, "Completed",  "Export completed", QMessageBox.Yes)
+
     def _createTable(self):
         #self.proxyTable = QTableWidget()
         self.proxyTable.setColumnCount(6)

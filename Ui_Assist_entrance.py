@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Assist_entrance.ui'
+# Form implementation generated from reading ui file 'C:\Work\ProxyAssistant\Assist_entrance.ui'
 #
-# Created by: PyQt5 UI code generator 5.10.1
+# Created by: PyQt5 UI code generator 5.14.2
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -57,6 +59,8 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralWidget)
         self.actionExportJSON_SR = QtWidgets.QAction(MainWindow)
         self.actionExportJSON_SR.setObjectName("actionExportJSON_SR")
+        self.actionExport_Proxychains = QtWidgets.QAction(MainWindow)
+        self.actionExport_Proxychains.setObjectName("actionExport_Proxychains")
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -65,9 +69,10 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.btnStartFetch.setText(_translate("MainWindow", "Fetch"))
-        self.testURL.setText(_translate("MainWindow", "http://www.baidu.com"))
+        self.testURL.setText(_translate("MainWindow", "https://www.screenscraper.fr"))
         self.label.setText(_translate("MainWindow", "Country:"))
         self.status_label.setText(_translate("MainWindow", "Ready"))
         self.label_2.setText(_translate("MainWindow", "Test URL:"))
         self.actionExportJSON_SR.setText(_translate("MainWindow", "Export JSON for Shadowrocket"))
-
+        self.actionExport_Proxychains.setText(_translate("MainWindow", "Export for Proxychains"))
+        self.actionExport_Proxychains.setToolTip(_translate("MainWindow", "Export Table for Proxychains"))

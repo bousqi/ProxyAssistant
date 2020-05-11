@@ -71,7 +71,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>http://www.baidu.com</string>
+     <string>https://www.screenscraper.fr</string>
     </property>
    </widget>
    <widget class="QComboBox" name="countrySelector">
@@ -133,6 +133,14 @@
   <action name="actionExportJSON_SR">
    <property name="text">
     <string>Export JSON for Shadowrocket</string>
+   </property>
+  </action>
+  <action name="actionExport_Proxychains">
+   <property name="text">
+    <string>Export for Proxychains</string>
+   </property>
+   <property name="toolTip">
+    <string>Export Table for Proxychains</string>
    </property>
   </action>
  </widget>
