@@ -63,7 +63,7 @@ class ProxyInfoContainer:
         items_ul = soup.find(name="div",  class_="table").find_all("ul")
         for item in items_ul:
             item_ins = ProxyItem()
-            ip_port_encoded = item.find("li", class_="proxy").get_text()
+            ip_port_encoded = item.find("li", class_="proxy").find("script").contents[0]
             item_ins.ip_port = self._getIPPort(ip_port_encoded)
             if not item_ins.ip_port:
                 return None
